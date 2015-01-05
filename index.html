@@ -4,23 +4,28 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico"/>
     <title>Zoey Arduino Interface</title>
-
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="/style.css"/>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
     <style>
+      h1, .navbar-brand{
+        border:1px solid #333;
+      }
       body{
         background:#0e0e0e;
         color:#efefef;
         opacity:0.8;
+        font-family: 'Droid Sans Mono', serif;
+      }
+      .navbar, .dropdown, .dropdown-menu, .dropdown-toggle{
+        background:#0e0e0e;
+        color:#efefef;
+        border:1px solid #333;
       }
       header{
-
         height:150px;
-        
-
       }
       .title{
         margin:20px auto;
@@ -41,7 +46,7 @@
         border:2px solid #222;
         text-align:center;
         padding:20px;
-        
+
       }
       .noscript-error {
         position: relative;
@@ -162,9 +167,47 @@
     <noscript><div class="noscript-error">Enable JavaScript to see this site working properly.</div></noscript>
     <div class="loading"></div>
   </div>
-    <div class="container">
+    
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Zoey</a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li><a href="#"># <span class="sr-only">(current)</span></a></li>
+              <li><a href="#">#</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"># <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">Actions</a></li>
+                  <li><a href="#">Pre-Programmed</a></li>
+                  <li><a href="#">Command Interface</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Editor</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="navbar-form navbar-left" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Port">
+              </div>
+              <button type="submit" class="btn btn-primary">Search for Ports</button>
+            </form>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+  <div class="container">
       <header class="row">
-        <div class="col-md-4"></div>
+        <div class="col-sm-4 col-md-4 col-lg-4"></div>
         <div class="col-lg-4 col-md-4 col-sm-4">
           <div class="header logo">
 
@@ -172,17 +215,25 @@
             <hr/>
           </div>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-sm-4 col-md-4 col-lg-4"></div>
       </header>
 
         
     <div class="row">
+      
       <div class="analog-read col-sm-12 col-md-6 col-lg-4">
       <h4>From Analog 0</h4>
         <hr/>
       <textarea class="form-control" style="" rows="8" id="inData"></textarea>
         <p><input type="text" class="form-control" id="inputData" name="analogDelay" value="1000" /></p>
         <p><button id="submitData" class="btn btn-primary">Set Delay</button></p>
+        <br/>
+        <h4>Socket Command Line Interface</h4>
+        <hr/>
+        <textarea class="form-control" style="" rows="8" ></textarea>
+        <p><input type="text" id="commands" style="opacity:0.3;" class="form-control" name="analogDelay" value="Enter Text Commands Here" /></p>
+        <p><button class="btn btn-primary">Set Delay</button></p>
+        
       </div>
       <div class="motor-interface col-sm-12 col-md-6 col-lg-4">
       <h4>Servo #1 to position:</h4>
@@ -239,9 +290,11 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/script.js"></script>
+    <!--<script src="/script.js"></script>-->
+
   <script>
-    //This is the UI file that governs all the click functions and crap
+
+//This is the UI file that governs all the click functions and crap
 
     var socket = io.connect('http://localhost');
 
@@ -279,13 +332,19 @@
     });
 
 
-  </script>
-  <script>
-
 
     $('.page-loading').delay(1000).fadeOut(1000);
 
 
+  </script>
+  <!--the governing scripts for the command lineinterface-->
+  <script>
+    $( "#commands" )
+            .keyup(function() {
+              var value = $( this ).val();
+              $( "textarea" ).text( value );
+            })
+            .keyup();
   </script>
     </body>
 </html>

@@ -1,8 +1,8 @@
 {
   "name": "node-arduino-test",
   "version": "0.0.1",
-  "description": "Testing node, web sockets, johnny-five, arduino",
-  "main": "webtest.js",
+  "description": "Drafting node, web sockets, johnny-five, arduino",
+  "main": "server.js",
   "dependencies": {
     "socket.io": "~0.9.16",
     "johnny-five": "~0.7.28"
@@ -11,6 +11,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "MIT"
+  "author": "JeR",
+  "license": "none"
 }

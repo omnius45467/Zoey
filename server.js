@@ -31,10 +31,11 @@ board.on("ready", function() {
   // poll this sensor every second
   sensor = new five.Sensor({
     pin: "A0",
-    freq: 1000
+    freq: 10
   });
 
 });
+
 
 // make web server listen on port 80
 app.listen(3000);
@@ -70,8 +71,8 @@ function handler(req, res) {
     });
     /*Read /css/custom.css file*/
   }
-  else if (req.url === '/style.css') {
-    fs.readFile('/style.css', function(err, data){
+  else if (req.url === '/styles.css') {
+    fs.readFile('/styles.css', function(err, data){
       res.writeHead(200, {'Content-Type': 'text/css'});
       res.end(data, 'utf-8');
     });
