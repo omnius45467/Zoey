@@ -1,9 +1,9 @@
 // initialize everything, web server, socket.io, filesystem, johnny-five
-var app = require('http').createServer(handler)
-  , io = require('socket.io').listen(app)
-  , fs = require('fs')
-  , five = require("johnny-five"),
-  board,servo,led,sensor;
+var app = require('http').createServer(handler), 
+    io = require('socket.io').listen(app), 
+    fs = require('fs'), 
+    five = require("johnny-five"),
+    board,servo1,servo2,led,sensor;
 
 board = new five.Board();
 
