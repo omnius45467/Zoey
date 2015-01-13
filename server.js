@@ -64,6 +64,12 @@ function handler(req, res) {
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.end(data, 'utf-8');
     });
+  }else if (req.url === '/command.html') {
+    fs.readFile('/command.html', function(err, data){
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.end(data, 'utf-8');
+    });
+    /*Read /css/custom.css file*/
   } else if (req.url === '/style.css') {
     fs.readFile('/style.css', function(err, data){
       res.writeHead(200, {'Content-Type': 'text/css'});

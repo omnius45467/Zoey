@@ -67,7 +67,10 @@
         z-index: 5000;
         overlflow: hidden;
       }
+      .center-loading{
 
+        
+      }
       .loading {
         margin: auto;
         position: absolute;
@@ -166,6 +169,7 @@
   <div class="page-loading">
     <noscript><div class="noscript-error">Enable JavaScript to see this site working properly.</div></noscript>
     <div class="loading"></div>
+    <h4 class="center-loading">Loading...</h4>
   </div>
     
       <nav class="navbar navbar-default">
@@ -332,9 +336,9 @@
     });
 
 
-
+    $('.center-loading').delay(1000).fadeOut(900);
     $('.page-loading').delay(1000).fadeOut(1000);
-
+    
 
   </script>
   <!--the governing scripts for the command lineinterface-->
